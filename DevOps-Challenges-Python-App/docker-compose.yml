@@ -1,12 +1,18 @@
-version: '2'
+version: '3.5'
 services:
     web:
-        build: .
+        build: 
+            context: .
         ports:
             - "${PORT}:${PORT}"
         volumes:
             - .:/app
-        depends_on:
+        depends_on:  
             - redis
+        env_file: .env
+
     redis:
         image: redis
+        restart: always
+        ports:
+         - "${REDIS_PORT}:${REDIS_PORT}"
