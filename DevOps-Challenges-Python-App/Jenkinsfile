@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { docker { image 'python:3.7' } }
     stages {
         
         stage('Cloning Git') {
@@ -13,8 +13,8 @@ pipeline {
                 echo 'Building..'
                 sh 'pwd'
                 sh 'cd DevOps-Challenges-Python-App/'
-                sh 'docker-compose build'
-                sh 'docker-compose up -d'
+                sh 'docker-compose up --build'
+              
             }
         }
     }
