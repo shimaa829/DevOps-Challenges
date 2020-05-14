@@ -1,9 +1,18 @@
 pipeline {
     agent any
     stages {
+        
+        stage('Cloning Git') {
+            steps {
+                sh 'pwd'
+                git 'https://github.com/shimaa829/DevOps-Challenges.git'      
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'pwd'
+                sh 'cd DevOps-Challenges-Python-App/'
                 sh 'docker-compose build'
                 sh 'docker-compose up -d'
             }
